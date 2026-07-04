@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La mulți ani, Bunica Mila! ❤️</title>
+    <link rel="stylesheet" href="style4.css">
+</head>
+<body>
+
+    <!-- Конфетти -->
+    <canvas id="confetti"></canvas>
+
+    <!-- Сердечки -->
+    <div id="hearts"></div>
+
+    <!-- Музыка -->
+    <audio id="music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Кнопка музыки -->
+    <button id="musicToggle" class="music-btn">
+        🔊
+    </button>
+
+    <!-- ============================================================
+         ОБЛОЖКА
+         ============================================================ -->
+    <section id="cover">
+
+        <div class="cover-book">
+
+            <div class="heart-photo">
+                <img src="cover.jpg" alt="Bunica Mila">
+            </div>
+
+            <h1>La mulți ani,<br>Bunica Mila!</h1>
+
+            <p class="cover-subtitle">
+                O carte plină de amintiri și iubire ❤️
+            </p>
+
+            <button id="openBook">
+                Deschide cartea
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ============================================================
+         КНИГА
+         ============================================================ -->
+    <section id="book" class="hidden">
+
+        <!-- РАЗВОРОТ 1 -->
+        <div class="spread active">
+
+            <div class="left-page">
+                <h2>LA MULȚI ANI, Bunica!!!</h2>
+                <p>
+                    Să fii sănătoasă, voioasă și să ne aștepți mereu cu ceva bun pe masă, și să nu te superi cînd mai facem gălăgie sau întoarcem casa cu susu-n jos...&#128147;
+                </p>
+            </div>
+
+            <div class="right-page">
+                <img src="photo1.jpg" alt="">
+            </div>
+
+        </div>
+
+     <!-- РАЗВОРОТ 2 — ЛЕВАЯ: НАДПИСЬ СВЕРХУ + ФОТО | ПРАВАЯ: ФОТО + НАДПИСЬ СНИЗУ -->
+<div class="spread">
+
+    <div class="left-page left-text-top">
+        <h2>Amintiri frumoase</h2>
+        <p>La mare'i bine, da' parcă tot plăcintele de-acasă îs mai bune</p>
+        <div class="photo-wrapper">
+            <img src="photo11.jpg" alt="Bunica Mila">
+        </div>
+    </div>
+
+    <div class="right-page right-text-bottom">
+        <div class="photo-wrapper">
+            <img src="photo4.jpg" alt="Bunica Mila">
+        </div>
+        <h2>Bucurii simple</h2>
+        <p>Să nu te păcălească nimeni la cărți...că bunica vede tot!!!</p>
+    </div>
+
+</div>
+ <!-- РАЗВОРОТ 3 — ЛЕВАЯ: ТЕКСТ СВЕРХУ + ФОТО | ПРАВАЯ: 2 ГОРИЗОНТАЛЬНЫХ ФОТО + НАДПИСЬ -->
+<div class="spread">
+
+    <div class="left-page left-text-top">
+        <h2>Clipe prețioase</h2>
+        <p>Bunica noastră, furnizor oficial de sarmale, clătite și placinte😋 mandat pe viață! </p>
+        <div class="photo-wrapper">
+            <img src="photo9.jpg" alt="Bunica Mila">
+        </div>
+    </div>
+
+    <div class="right-page right-photo-horizontal">
+        <div class="horizontal-photos">
+            <img src="photo13.jpg" alt="Bunica Mila" class="photo-top">
+            <img src="photo12.jpg" alt="Bunica Mila" class="photo-bottom">
+        </div>
+       
+        <p>rădăcini puternice, ramuri frumoase </p>
+    </div>
+
+</div>
+
+        <!-- РАЗВОРОТ 4 -->
+<div class="spread">
+
+    <div class="left-page left-text-top">
+       
+        <p>La mulți ani celei care zice
+"am facut putin"<br>
+și scoate o cratiță de 5 litri de borș
+
+
+
+</p>
+        <div class="photo-wrapper">
+            <img src="photo10.jpg" alt="Bunica Mila">
+        </div>
+    </div>
+
+    <div class="right-page right-text-bottom">
+        <div class="photo-wrapper">
+            <img src="photo14.jpg" alt="Bunica Mila">
+        </div>
+        <h2>Promoția de nepoți</h2>
+        <p>Averea ta încape întro fotografie</p>
+    </div>
+
+</div>
+
+        <!-- РАЗВОРОТ 5 -->
+        <div class="spread">
+
+            <div class="left-page">
+                
+                <p>
+                     oleacă mai înceți la pași, da' nu și la limbă                </p>
+            </div>
+
+            <div class="right-page">
+                <img src="photo8.jpg" alt="">
+            </div>
+
+        </div>
+
+    <!-- ============================================================
+     🎂 ФИНАЛЬНЫЙ РАЗВОРОТ — ТОРТ
+     ============================================================ -->
+<div class="spread final-spread">
+
+    <div class="final-content">
+
+        <h2 class="cake-title">
+            La mulți ani, Bunica Mila! 🎉
+        </h2>
+
+        <!-- ========== ТОРТ ========== -->
+        <div id="cake">
+
+            <!-- Верхний слой -->
+            <div class="cake-top"></div>
+
+            <!-- Нижний слой -->
+            <div class="cake-bottom"></div>
+
+            <!-- 3 СВЕЧИ (все три!) -->
+            <div class="candle candle-1"></div>
+            <div class="candle candle-2"></div>
+            <div class="candle candle-3"></div>
+
+            <!-- ЦИФРЫ 7 и 4 -->
+            <div class="digit-seven">7</div>
+            <div class="digit-four">4</div>
+
+        </div>
+        <!-- ========== КОНЕЦ ТОРТА ========== -->
+
+        <p class="cake-text">
+            👆 Apasă pe tort pentru a stinge lumânările
+        </p>
+
+        <div id="finalMessage">
+            Să ne trăiești  mulți ani!
+            Sănătoasă și voioasă!
+            Te iubim! ❤️
+        </div>
+
+    </div>
+
+</div>   
+
+        </div>
+
+        <!-- Навигация -->
+        <div class="navigation">
+
+            <button id="prevBtn">
+                ←
+            </button>
+
+            <button id="nextBtn">
+                →
+            </button>
+
+        </div>
+
+    </section>
+
+    <script src="script4.js"></script>
+
+</body>
+</html> 

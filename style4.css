@@ -1,0 +1,1090 @@
+/* ============================================================
+   🌟 ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+   ============================================================ */
+:root {
+    --heart-size: 410px;
+    --heart-size-mobile: 180px;
+    --spine-width: 6px;
+}
+
+/* ============================================================
+   ОБЩИЕ СТИЛИ
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Georgia, serif;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #f5ede6;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ============================================================
+   🎊 КОНФЕТТИ И СЕРДЕЧКИ
+   ============================================================ */
+#confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+}
+
+#hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+}
+
+/* ============================================================
+   ❤️ СЕРДЕЧКИ
+   ============================================================ */
+#hearts .heart {
+    position: fixed;
+    top: -50px;
+    font-size: 28px;
+    animation: heartFall linear forwards;
+    pointer-events: none;
+    z-index: 1000;
+    user-select: none;
+    opacity: 1;
+}
+
+#hearts .heart:nth-child(odd) {
+    animation-duration: 5s;
+}
+
+#hearts .heart:nth-child(even) {
+    animation-duration: 7s;
+}
+
+@keyframes heartFall {
+    0% {
+        transform: translateY(0) scale(0.3) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(50vh) scale(1) rotate(360deg);
+    }
+    100% {
+        transform: translateY(110vh) scale(1.2) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* ============================================================
+   КНОПКА МУЗЫКИ
+   ============================================================ */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    border: none;
+    border-radius: 50%;
+    width: 58px;
+    height: 58px;
+    font-size: 26px;
+    cursor: pointer;
+    background: #f0d0c0;
+    box-shadow: 0 2px 20px rgba(180, 140, 130, 0.2);
+    transition: transform 0.3s;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+}
+
+/* ============================================================
+   📖 ОБЛОЖКА — ЯРКИЙ, НО НЕЖНЫЙ ГРАДИЕНТ
+   ============================================================ */
+#cover {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #fce0d8, #f8ccc0, #f5d4c8, #f0c8d0, #e8d0d8);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    transform: translate3d(0, 0, 0);
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 0%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    75% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.cover-book {
+    width: min(900px, 90vw);
+    height: min(650px, 85vh);
+    background: rgba(255, 245, 240, 0.8);
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    color: #5a4035;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 25px 60px rgba(180, 140, 130, 0.2);
+    padding: 25px;
+}
+
+.cover-book h1 {
+    font-size: 2.8rem;
+    text-align: center;
+    margin: 0;
+    line-height: 1.2;
+    color: #6b4a38;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.cover-subtitle {
+    font-size: 20px;
+    opacity: 0.85;
+    margin: 0;
+    color: #7a5a45;
+    letter-spacing: 0.5px;
+}
+
+.heart-photo {
+    width: 380px;
+    height: 380px;
+    overflow: hidden;
+    clip-path: path("M190 348 C-42 190 42 0 190 105 C338 0 422 190 190 348 Z");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 0 auto;
+}
+
+.heart-photo img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    object-position: center 5%;
+}
+
+#openBook {
+    padding: 16px 44px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 22px;
+    background: #e8c8b8;
+    color: #4a3428;
+    font-weight: bold;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 25px rgba(200, 160, 148, 0.35);
+    margin-top: 5px;
+    letter-spacing: 0.5px;
+}
+
+#openBook:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 35px rgba(200, 160, 148, 0.5);
+}
+
+/* ============================================================
+   КНИГА
+   ============================================================ */
+#book {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #f5ede6;
+}
+
+.spread {
+    display: none;
+    width: min(1200px, 94vw);
+    height: min(700px, 82vh);
+    background: #fcf5ef;
+    border-radius: 12px;
+    box-shadow: 0 15px 45px rgba(160, 140, 130, 0.12);
+    overflow: hidden;
+    position: relative;
+}
+
+.spread.active {
+    display: flex;
+}
+
+.spread::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: var(--spine-width);
+    height: 100%;
+    background: linear-gradient(to right, #e8d0c4, #f5ece5, #e8d0c4);
+}
+
+.final-spread::after {
+    display: none;
+}
+
+/* ============================================================
+   📄 СТРАНИЦЫ — ОЧЕНЬ КРУПНЫЙ ШРИФТ
+   ============================================================ */
+.left-page,
+.right-page {
+    width: 50%;
+    padding: 40px 45px;
+}
+
+.left-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left-page h2 {
+    color: #6b4a38;
+    font-size: 2.6rem;
+    margin-bottom: 25px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.left-page p {
+    color: #7a5a45;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    letter-spacing: 0.3px;
+}
+
+.right-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-page img {
+    width: 100%;
+    max-width: 420px;
+    max-height: 520px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(160, 140, 130, 0.12);
+}
+
+/* ============================================================
+   📸 РАЗВОРОТ 1
+   ============================================================ */
+.right-page.single-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-page.single-photo img {
+    width: 100%;
+    max-width: 500px;
+    max-height: 520px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(160, 140, 130, 0.12);
+}
+
+/* ============================================================
+   📸 РАЗВОРОТ 2 И 3 — КРУПНЫЙ ШРИФТ
+   ============================================================ */
+
+.left-page.left-text-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 40px;
+    gap: 14px;
+}
+
+.left-page.left-text-top h2 {
+    color: #6b4a38;
+    font-size: 2.4rem;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+.left-page.left-text-top p {
+    color: #7a5a45;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    margin: 0 0 15px 0;
+}
+
+.left-page.left-text-top .photo-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.left-page.left-text-top .photo-wrapper img {
+    width: 100%;
+    max-width: 400px;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(160, 140, 130, 0.12);
+}
+
+.right-page.right-text-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 40px;
+    gap: 20px;
+}
+
+.right-page.right-text-bottom .photo-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.right-page.right-text-bottom .photo-wrapper img {
+    width: 100%;
+    max-width: 400px;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(160, 140, 130, 0.12);
+}
+
+.right-page.right-text-bottom h2 {
+    color: #6b4a38;
+    font-size: 2.4rem;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.right-page.right-text-bottom p {
+    color: #7a5a45;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    text-align: center;
+    margin: 0;
+    max-width: 90%;
+}
+
+/* ============================================================
+   🎂 ТОРТ — НЕЖНЫЙ РОЗОВЫЙ
+   ============================================================ */
+
+.final-spread {
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #fcf5ef, #f5e4da);
+}
+
+.final-content {
+    width: 100%;
+    text-align: center;
+    padding: 30px;
+}
+
+.cake-title {
+    margin-bottom: 25px;
+    color: #c49078;
+    font-size: 2.8rem;
+    text-shadow: 0 2px 20px rgba(196, 144, 120, 0.2);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#cake {
+    position: relative;
+    width: 400px;
+    height: 280px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+#cake:hover {
+    transform: scale(1.02);
+}
+
+#cake:active {
+    transform: scale(0.98);
+}
+
+.cake-top {
+    position: absolute;
+    left: 70px;
+    top: 90px;
+    width: 260px;
+    height: 60px;
+    background: linear-gradient(180deg, #f5d4ca, #ecc4b8);
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 4px 25px rgba(220, 180, 170, 0.3);
+    z-index: 1;
+}
+
+.cake-top::after {
+    content: "🍓";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 26px;
+}
+
+.cake-bottom {
+    position: absolute;
+    left: 40px;
+    top: 145px;
+    width: 320px;
+    height: 95px;
+    background: linear-gradient(180deg, #ecc4b8, #dbb0a2);
+    border-radius: 14px 14px 8px 8px;
+    box-shadow: 0 8px 35px rgba(210, 170, 160, 0.25);
+    z-index: 0;
+}
+
+/* ============================================================
+   🕯️ 3 СВЕЧИ
+   ============================================================ */
+
+.candle {
+    position: absolute;
+    width: 10px;
+    height: 38px;
+    background: linear-gradient(180deg, #f5e4da, #e8d4c8);
+    border-radius: 3px 3px 2px 2px;
+    box-shadow: 0 2px 12px rgba(200, 180, 170, 0.25);
+    top: 52px;
+    transition: all 0.3s;
+    z-index: 3;
+}
+
+.candle::after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 10px;
+    width: 6px;
+    height: 4px;
+    background: rgba(200, 175, 165, 0.2);
+    border-radius: 50%;
+    box-shadow: 0 8px 0 rgba(200, 175, 165, 0.2),
+        0 16px 0 rgba(200, 175, 165, 0.2);
+}
+
+.candle::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 16px;
+    background: radial-gradient(ellipse at center, #f5d88a, #e8c060, #d4a848);
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 0 0 30px #e8c060, 0 0 60px #d4a848;
+    animation: flicker 0.6s infinite alternate;
+    transition: all 0.5s;
+}
+
+.candle.out::before {
+    opacity: 0;
+    animation: none;
+    box-shadow: none;
+}
+
+.candle.out {
+    background: linear-gradient(180deg, #d4c8be, #c4b8ae);
+    box-shadow: none;
+}
+
+.candle-1 {
+    left: 165px;
+}
+
+.candle-2 {
+    left: 195px;
+}
+
+.candle-3 {
+    left: 225px;
+}
+
+/* ============================================================
+   📝 ЦИФРЫ "7" И "4"
+   ============================================================ */
+
+.digit-seven,
+.digit-four {
+    position: absolute;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    color: #c49078;
+    text-shadow: 0 2px 20px rgba(196, 144, 120, 0.25);
+    font-size: 58px;
+    line-height: 1;
+    z-index: 2;
+}
+
+.digit-seven {
+    left: 163px;
+    top: 125px;
+}
+
+.digit-four {
+    left: 218px;
+    top: 125px;
+}
+
+/* ============================================================
+   🔥 АНИМАЦИЯ ОГНЯ
+   ============================================================ */
+
+@keyframes flicker {
+    0% {
+        transform: translateX(-50%) scale(1) rotate(-3deg);
+        box-shadow: 0 0 30px #e8c060, 0 0 60px #d4a848;
+    }
+    50% {
+        transform: translateX(-50%) scale(1.1) rotate(2deg);
+        box-shadow: 0 0 40px #e8c060, 0 0 80px #d4a848, 0 0 100px #c49838;
+    }
+    100% {
+        transform: translateX(-50%) scale(0.95) rotate(-2deg);
+        box-shadow: 0 0 25px #e8c060, 0 0 50px #d4a848;
+    }
+}
+
+/* ============================================================
+   📝 ТЕКСТ ПОД ТОРТОМ
+   ============================================================ */
+
+.cake-text {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #a08878;
+    font-style: italic;
+    animation: pulseText 3s ease-in-out infinite;
+}
+
+@keyframes pulseText {
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.9;
+    }
+}
+
+#finalMessage {
+    opacity: 0;
+    margin-top: 25px;
+    font-size: 2.4rem;
+    color: #c49078;
+    transition: opacity 1s ease, transform 1s ease;
+    transform: scale(0.8);
+}
+
+#finalMessage.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ============================================================
+   📄 НАВИГАЦИЯ
+   ============================================================ */
+.navigation {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.navigation button {
+    padding: 16px 32px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 26px;
+    background: #e8d0c4;
+    color: #6b4a38;
+    font-weight: bold;
+    transition: transform 0.3s, background 0.3s;
+    box-shadow: 0 2px 15px rgba(160, 140, 130, 0.12);
+}
+
+.navigation button:hover {
+    transform: scale(1.06);
+    background: #ddc4b8;
+}
+
+/* ============================================================
+   📱 МОБИЛЬНАЯ ВЕРСИЯ
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .spread.active {
+        flex-direction: column;
+    }
+
+    .spread::after {
+        display: none;
+    }
+
+    .left-page,
+    .right-page {
+        width: 100%;
+        padding: 18px 22px;
+    }
+
+    .left-page {
+        order: 2;
+    }
+
+    .right-page {
+        order: 1;
+    }
+
+    .right-page img {
+        max-width: 80%;
+        max-height: 250px;
+    }
+
+    .heart-photo {
+        width: 180px;
+        height: 180px;
+        clip-path: path("M90 165 C-20 90 20 0 90 50 C160 0 200 90 90 165 Z");
+    }
+
+    .heart-photo img {
+        object-position: center 5%;
+    }
+
+    .cover-book h1 {
+        font-size: 2rem;
+    }
+
+    .cover-subtitle {
+        font-size: 16px;
+    }
+
+    #openBook {
+        padding: 12px 30px;
+        font-size: 18px;
+    }
+
+    .left-page h2 {
+        font-size: 2rem;
+    }
+
+    .left-page p {
+        font-size: 1.2rem;
+    }
+
+    .left-page.left-text-top {
+        padding: 12px 18px;
+        order: 2;
+    }
+
+    .right-page.right-text-bottom {
+        padding: 12px 18px;
+        order: 1;
+    }
+
+    .left-page.left-text-top .photo-wrapper img,
+    .right-page.right-text-bottom .photo-wrapper img {
+        max-width: 90%;
+        max-height: 160px;
+    }
+
+    .left-page.left-text-top h2,
+    .right-page.right-text-bottom h2 {
+        font-size: 1.8rem;
+    }
+
+    .left-page.left-text-top p,
+    .right-page.right-text-bottom p {
+        font-size: 1.1rem;
+    }
+
+    .right-page.single-photo img {
+        max-width: 80%;
+        max-height: 250px;
+    }
+
+    .navigation button {
+        padding: 12px 24px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    #cake {
+        transform: scale(0.7);
+        transform-origin: center center;
+        margin: 0 auto;
+    }
+
+    #cake:hover {
+        transform: scale(0.72);
+    }
+
+    .cake-title {
+        font-size: 2rem;
+    }
+
+    #finalMessage {
+        font-size: 1.8rem;
+    }
+
+    .final-content {
+        padding: 15px;
+    }
+
+    .cake-text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 450px) {
+    #cake {
+        transform: scale(0.55);
+        transform-origin: center center;
+    }
+}
+/* ============================================================
+   📸 РАЗВОРОТ 3 — ПРАВАЯ СТРАНИЦА: 2 ФОТО С НАХЛЕСТОМ
+   ============================================================ */
+
+.right-page.right-photo-overlap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 40px;
+    gap: 18px;
+}
+
+.right-page.right-photo-overlap .overlap-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-page.right-photo-overlap .photo-stack {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Заднее фото (чуть левее и ниже) */
+.right-page.right-photo-overlap .photo-back {
+    position: absolute;
+    width: 75%;
+    height: 85%;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+    transform: rotate(-4deg) translateX(-18px) translateY(10px);
+    z-index: 1;
+    border: 3px solid #fcf5ef;
+}
+
+/* Переднее фото (чуть правее и выше) */
+.right-page.right-photo-overlap .photo-front {
+    position: absolute;
+    width: 75%;
+    height: 85%;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+    transform: rotate(3deg) translateX(18px) translateY(-10px);
+    z-index: 2;
+    border: 3px solid #fcf5ef;
+}
+
+.right-page.right-photo-overlap h2 {
+    color: #6b4a38;
+    font-size: 2.4rem;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.right-page.right-photo-overlap p {
+    color: #7a5a45;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    text-align: center;
+    margin: 0;
+    max-width: 90%;
+}
+
+/* ============================================================
+   📱 МОБИЛЬНАЯ ВЕРСИЯ
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .right-page.right-photo-overlap {
+        padding: 15px 20px;
+        gap: 12px;
+    }
+
+    .right-page.right-photo-overlap .photo-stack {
+        max-width: 100%;
+        height: 220px;
+    }
+
+    .right-page.right-photo-overlap .photo-back,
+    .right-page.right-photo-overlap .photo-front {
+        width: 80%;
+        height: 80%;
+        border-radius: 10px;
+    }
+
+    .right-page.right-photo-overlap .photo-back {
+        transform: rotate(-3deg) translateX(-10px) translateY(8px);
+    }
+
+    .right-page.right-photo-overlap .photo-front {
+        transform: rotate(2deg) translateX(10px) translateY(-8px);
+    }
+
+    .right-page.right-photo-overlap h2 {
+        font-size: 1.8rem;
+    }
+
+    .right-page.right-photo-overlap p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .right-page.right-photo-overlap .photo-stack {
+        height: 160px;
+    }
+
+    .right-page.right-photo-overlap .photo-back,
+    .right-page.right-photo-overlap .photo-front {
+        width: 85%;
+        height: 80%;
+    }
+
+    .right-page.right-photo-overlap .photo-back {
+        transform: rotate(-2deg) translateX(-6px) translateY(5px);
+    }
+
+    .right-page.right-photo-overlap .photo-front {
+        transform: rotate(2deg) translateX(6px) translateY(-5px);
+    }
+}
+/* ============================================================
+   📸 РАЗВОРОТ 3 — ПРАВАЯ СТРАНИЦА: 2 ГОРИЗОНТАЛЬНЫХ ФОТО
+   ============================================================ */
+
+.right-page.right-photo-horizontal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 40px;
+    gap: 18px;
+}
+
+.right-page.right-photo-horizontal .horizontal-photos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.right-page.right-photo-horizontal .horizontal-photos img {
+    width: 100%;
+    height: 220px;              /* ← ВЫСОТА КАЖДОГО ФОТО */
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 3px solid #fcf5ef;
+    transition: transform 0.3s;
+}
+
+.right-page.right-photo-horizontal .horizontal-photos img:hover {
+    transform: scale(1.02);
+}
+
+.right-page.right-photo-horizontal h2 {
+    color: #6b4a38;
+    font-size: 2.4rem;
+    margin: 5px 0 0 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.right-page.right-photo-horizontal p {
+    color: #7a5a45;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    text-align: center;
+    margin: 0;
+    max-width: 90%;
+}
+
+/* ============================================================
+   📱 МОБИЛЬНАЯ ВЕРСИЯ
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .right-page.right-photo-horizontal {
+        padding: 15px 20px;
+        gap: 12px;
+    }
+
+    .right-page.right-photo-horizontal .horizontal-photos {
+        max-width: 95%;
+    }
+
+    .right-page.right-photo-horizontal .horizontal-photos img {
+        height: 160px;
+        border-radius: 10px;
+    }
+
+    .right-page.right-photo-horizontal h2 {
+        font-size: 1.8rem;
+    }
+
+    .right-page.right-photo-horizontal p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .right-page.right-photo-horizontal .horizontal-photos img {
+        height: 120px;
+    }
+
+    .right-page.right-photo-horizontal h2 {
+        font-size: 1.5rem;
+    }
+
+    .right-page.right-photo-horizontal p {
+        font-size: 1rem;
+    }
+}
+/* ============================================================
+   📸 ОБРЕЗКА ФОТО — ПОКАЗЫВАЕМ ТОЛЬКО ЛИЦА
+   ============================================================ */
+
+/* Для всех фото в книге */
+.spread img {
+    object-fit: cover;
+    object-position: center 10%;  /* ← СМЕЩАЕМ ФОТО ВНИЗ, ЧТОБЫ ПОКАЗАТЬ ЛИЦА */
+}
+
+/* Для фото на правой странице (горизонтальные) */
+.right-page.right-photo-horizontal .horizontal-photos img {
+    object-fit: cover;
+    object-position: center 20%;  /* ← ДЛЯ ГОРИЗОНТАЛЬНЫХ ФОТО */
+}
+
+/* Для фото с нахлестом */
+.right-page.right-photo-overlap .photo-back,
+.right-page.right-photo-overlap .photo-front {
+    object-fit: cover;
+    object-position: center 25%;
+}
+
+/* Для фото в левой странице (развороты 2, 3, 4, 5) */
+.left-page.left-text-top .photo-wrapper img {
+    object-fit: cover;
+    object-position: center 25%;
+}
+
+/* Для разворота 1 (большая фото) */
+.right-page.single-photo img {
+    object-fit: cover;
+    object-position: center 25%;
+}
+
+/* Для обычных правых страниц */
+.right-page img {
+    object-fit: cover;
+    object-position: center 25%;
+}
+/* ============================================================
+   📸 ОБРЕЗКА ФОТО — ТОЛЬКО ЛИЦА И ПЛЕЧИ (БЕЗ НОГ!)
+   ============================================================ */
+
+/* Все фото в книге — жёсткая обрезка */
+.spread img {
+    object-fit: cover;
+    object-position: center 15%;  /* ← ЕЩЁ СИЛЬНЕЕ ОБРЕЗАЕТ НИЗ */
+}
+
+/* Горизонтальные фото на 3-м развороте */
+.right-page.right-photo-horizontal .horizontal-photos img {
+    object-fit: cover;
+    object-position: center 10%;
+}
+
+/* Фото с нахлестом на 3-м развороте */
+.right-page.right-photo-overlap .photo-back,
+.right-page.right-photo-overlap .photo-front {
+    object-fit: cover;
+    object-position: center 15%;
+}
+
+/* Фото в левой странице (развороты 2-5) */
+.left-page.left-text-top .photo-wrapper img {
+    object-fit: cover;
+    object-position: center 15%;
+}
+
+/* Большая фото на 1-м развороте */
+.right-page.single-photo img {
+    object-fit: cover;
+    object-position: center 15%;
+}
+
+/* Обычные фото */
+.right-page img {
+    object-fit: cover;
+    object-position: center 15%;
+}
